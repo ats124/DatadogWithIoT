@@ -1,0 +1,8 @@
+// Wifi SSID
+const char* wifi_ssid = "SSID";
+// Wifi Password
+const char* wifi_password = "PASSWORD";
+// Datadog API KEY
+const String datadog_api_key = "API_KEY";
+// Datadog Host
+const char* datadog_host = "HOST";
