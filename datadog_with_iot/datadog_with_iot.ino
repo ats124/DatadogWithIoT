@@ -63,7 +63,7 @@ void postMetric(String tags, String metric, time_t tm, double point) {
     client.println();
     client.print(json);
     client.flush();
-    String response = client.readString();  // レスポンス取れない・・・
+    String response = client.readString();
     Serial.println(response);
   }
 }
