@@ -40,14 +40,15 @@ void setup() {
  
 void loop() {
   time_t tm = now();
-  postMetric("environment:test", "test.metric", tm, 123);
-  delay(5000);
+  float val = (float)random(300);
+  postMetric("test", "test.random", tm, val);
+  delay(15000);
 }
 
 void postMetric(String tags, String metric, time_t tm, double point) {
   if (client.connect("app.datadoghq.com", 443)) {
     char json[256];
-    sprintf(json, "{\"series\":[{\"metric\":\"%s\",\"points\":[[%lu, %s]],\"type\":\"gauge\",\"host\":\"%s\",\"tags\":[\"%s\"]}]}", metric.c_str(), tm, String(point).c_str(), datadog_host, tags.c_str());
+    sprintf(json, "{\"series\":[{\"metric\":\"%s\",\"points\":[[%lu, %s]],\"type\":\"gauge\",\"tags\":[\"%s\"]}]}", metric.c_str(), tm, String(point).c_str(), tags.c_str());
 
     Serial.println(json);
     String requestPath = "/api/v1/series?api_key=";
@@ -60,8 +61,8 @@ void postMetric(String tags, String metric, time_t tm, double point) {
     client.print("Content-Length: ");
     client.println(strlen(json));
     client.println();
-    client.println(json);
-    delay(10);
+    client.print(json);
+    client.flush();
     String response = client.readString();  // レスポンス取れない・・・
     Serial.println(response);
   }
