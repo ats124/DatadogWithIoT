@@ -7,3 +7,6 @@ https://github.com/PaulStoffregen/Time
 
 ### sketchLibraryNTP
 https://github.com/exabugs/sketchLibraryNTP
+
+### BME280
+https://github.com/SWITCHSCIENCE/BME280
